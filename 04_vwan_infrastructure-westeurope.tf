@@ -29,7 +29,7 @@ module "vpngw-germany" {
 # S2S endpoint for hub
 module "s2s-vpngw-germany" {
   source = "./modules/s2s-vpngw"
-  resource_group = azurerm_resource_group.germany.name
+  resource_group = azurerm_resource_group.germanys2s.name
   vnet_address_scope = "192.168.4.0/22"
   subnet_address_prefix = "192.168.4.0/24"
   subnet_vpn_address_prefix = "192.168.5.0/24"
@@ -37,7 +37,6 @@ module "s2s-vpngw-germany" {
   shared_key = "asdljasldkjfalskdjflaksjd!!!222"
   branch_asn = "4441"
   depends_on = [
-    azurerm_resource_group.vwan,
-    azurerm_virtual_wan.vwan
+    azurerm_resource_group.germanys2s,
     ]
 }
