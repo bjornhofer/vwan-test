@@ -34,6 +34,7 @@ module "s2s-vpngw-germany" {
   subnet_address_prefix = "192.168.4.0/24"
   subnet_vpn_address_prefix = "192.168.5.0/24"
   hub_vpn_ip = module.vpngw-germany.public_ip
+  remote_subnet_scope = module.vpngw-germany.subnet_address_prefix
   shared_key = "asdljasldkjfalskdjflaksjd!!!222"
   branch_asn = "4441"
   depends_on = [

@@ -22,6 +22,11 @@ variable "hub_vpn_ip" {
   description = "IP of the Hub-VPNGW"
 }
 
+variable "remote_subnet_scope" {
+  type = string
+  description = "Subnet of the remote side"
+}
+
 variable "branch_asn" {
   type = string
   description = "ASN of the branch"
