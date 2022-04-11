@@ -59,7 +59,7 @@ resource "azurerm_local_network_gateway" "tohub" {
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = data.azurerm_resource_group.rg.location
   gateway_address     = var.hub_vpn_ip
-  address_space       = azurerm_virtual_network.VNET.address_space
+  address_space       = var.remote_subnet_scope
 }
 
 # VPN Connection

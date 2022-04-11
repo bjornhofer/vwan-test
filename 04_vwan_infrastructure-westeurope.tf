@@ -40,3 +40,5 @@ module "s2s-vpngw-germany" {
     azurerm_resource_group.germanys2s,
     ]
 }
+
+
