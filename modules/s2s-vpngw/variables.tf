@@ -23,7 +23,7 @@ variable "hub_vpn_ip" {
 }
 
 variable "remote_subnet_scope" {
-  type = string
+  type = list(string)
   description = "Subnet of the remote side"
 }
 
