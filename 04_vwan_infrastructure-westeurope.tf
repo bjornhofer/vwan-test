@@ -41,6 +41,7 @@ module "peered-vm-germany" {
 # Storage Account with Private Endpoint
 module "storage-acount-germany" {
     source = "./modules/storageaccount"
+    name = "stgtest0011jj"
     resource_group = azurerm_resource_group.germany.name
     subnet_id = module.peered-vnet-germany.subnet_id
     depends_on = [

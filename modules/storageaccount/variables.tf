@@ -6,3 +6,7 @@ variable "resource_group" {
 variable "subnet_id" {
   type = string
 }
+
+variable "name" {
+  type = string
+}

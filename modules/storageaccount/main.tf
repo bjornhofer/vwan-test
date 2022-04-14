@@ -4,7 +4,7 @@ data "azurerm_resource_group" "rg" {
 
 # Storage account
 resource "azurerm_storage_account" "storage" {
-  name                     = "stgvwanbj${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
+  name                     = var.name
   resource_group_name      = data.azurerm_resource_group.rg.name
   location                 = data.azurerm_resource_group.rg.location
   account_kind              = "StorageV2"
