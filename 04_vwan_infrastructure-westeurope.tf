@@ -11,7 +11,7 @@ module "vwan-hub-germany" {
     ]
 }
 
-# VNET Peering
+# VNET with Peering
 module "peered-vnet-germany" {
   source = "./modules/vnetvwan"
   resource_group = azurerm_resource_group.germany.name
@@ -25,37 +25,26 @@ module "peered-vnet-germany" {
     ]
 }
 
-# VPN not implemented yet
-/*
-module "vpngw-germany" {
-  source = "./modules/vpngw"
-  resource_group = azurerm_resource_group.germany.name
-  vnet_address_scope = "192.168.0.0/22"
-  subnet_address_prefix = "192.168.0.0/24"
-  subnet_vpn_address_prefix = "192.168.1.0/24"
-  vwan_hub_id = module.vwan-hub-germany.vwan_hub_id
-  shared_key = "asdljasldkjfalskdjflaksjd!!!222"
-  branch_asn = "4441"
-  depends_on = [
-    azurerm_resource_group.vwan,
-    azurerm_virtual_wan.vwan
+# VM in the VNET
+module "peered-vm-germany" {
+    source = "./modules/virtualmachine"
+    naming_convention = "peeredvmgermany00"
+    resource_group = azurerm_resource_group.germany.name
+    vmname = "vm01"
+    subnet_id = module.peered-vnet-germany.subnet_id
+    depends_on = [
+        azurerm_resource_group.germany,
+        module.peered-vnet-germany
     ]
 }
 
-# S2S endpoint for hub
-module "s2s-vpngw-germany" {
-  source = "./modules/s2s-vpngw"
-  resource_group = azurerm_resource_group.germanys2s.name
-  vnet_address_scope = "192.168.4.0/22"
-  subnet_address_prefix = "192.168.4.0/24"
-  subnet_vpn_address_prefix = "192.168.5.0/24"
-  hub_vpn_ip = module.vpngw-germany.public_ip
-  shared_key = "asdljasldkjfalskdjflaksjd!!!222"
-  branch_asn = "4441"
-  depends_on = [
-    azurerm_resource_group.germanys2s,
+# Storage Account with Private Endpoint
+module "storage-acount-germany" {
+    source = "./modules/storageaccount"
+    resource_group = azurerm_resource_group.germany.name
+    subnet_id = module.peered-vnet-germany.subnet_id
+    depends_on = [
+        azurerm_resource_group.germany,
+        module.peered-vnet-germany
     ]
 }
-*/
-
-
