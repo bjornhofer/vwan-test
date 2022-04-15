@@ -10,7 +10,7 @@ resource "random_string" "storage" {
 
 # Storage account
 resource "azurerm_storage_account" "storage" {
-  name                     = random_string.storage.result
+  name                     = lower(random_string.storage.result)
   resource_group_name      = data.azurerm_resource_group.rg.name
   location                 = data.azurerm_resource_group.rg.location
   account_kind              = "StorageV2"
@@ -19,7 +19,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                  = "demo-${random_string.storage.result}"
+  name                  = "demo-${lower(random_string.storage.result)}"
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
 }
