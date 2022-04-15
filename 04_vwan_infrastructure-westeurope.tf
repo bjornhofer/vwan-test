@@ -18,6 +18,7 @@ module "peered-vnet-germany" {
   vnet_scope = "192.168.8.0/22"
   subnet_prefix = "192.168.8.0/24"
   vwan_hub_id = module.vwan-hub-germany.vwan_hub_id
+  enforce_private_link_endpoint_network_policies = true
   depends_on = [
     azurerm_resource_group.vwan,
     azurerm_virtual_wan.vwan,
