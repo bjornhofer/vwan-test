@@ -10,12 +10,19 @@ resource "azurerm_virtual_network" "vnetvwan" {
   address_space       = ["${var.vnet_scope}"]
 }
 
-resource "azurerm_subnet" "vnetvwan-subnet" {
-  name                  = "vwan-vnet-sn-${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
+resource "azurerm_subnet" "vnetvwan-subnet-pe" {
+  name                  = "vwan-vnet-sn-pe${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
   virtual_network_name  = azurerm_virtual_network.vnetvwan.name
   resource_group_name   = data.azurerm_resource_group.rg.name
-  address_prefixes      = ["${var.subnet_prefix}"]
+  address_prefixes      = ["${var.subnet_pe_prefix}"]
   enforce_private_link_endpoint_network_policies = var.enforce_private_link_endpoint_network_policies
+}
+
+resource "azurerm_subnet" "vnetvwan-subnet-vm" {
+  name                  = "vwan-vnet-sn-vm-${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
+  virtual_network_name  = azurerm_virtual_network.vnetvwan.name
+  resource_group_name   = data.azurerm_resource_group.rg.name
+  address_prefixes      = ["${var.subnet_vm_prefix}"]
 }
 
 resource "azurerm_virtual_hub_connection" "vnet2hub" {

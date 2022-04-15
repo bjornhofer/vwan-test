@@ -16,7 +16,8 @@ module "peered-vnet-germany" {
   source = "./modules/vnetvwan"
   resource_group = azurerm_resource_group.germany.name
   vnet_scope = "192.168.8.0/22"
-  subnet_prefix = "192.168.8.0/24"
+  subnet_pe_prefix = "192.168.8.0/24"
+  subnet_vm_prefix = "192.168.9.0/24"
   vwan_hub_id = module.vwan-hub-germany.vwan_hub_id
   enforce_private_link_endpoint_network_policies = true
   depends_on = [
@@ -32,7 +33,7 @@ module "peered-vm-germany" {
     naming_convention = "peeredvmgermany00"
     resource_group = azurerm_resource_group.germany.name
     vmname = "vm01"
-    subnet_id = module.peered-vnet-germany.subnet_id
+    subnet_id = module.peered-vnet-germany.subnet_vm_id
     depends_on = [
         azurerm_resource_group.germany,
         module.peered-vnet-germany
@@ -42,9 +43,8 @@ module "peered-vm-germany" {
 # Storage Account with Private Endpoint
 module "storage-acount-germany" {
     source = "./modules/storageaccount"
-    name = "stgtest0011jj"
     resource_group = azurerm_resource_group.germany.name
-    subnet_id = module.peered-vnet-germany.subnet_id
+    subnet_id = module.peered-vnet-germany.subnet_pe_id
     depends_on = [
         azurerm_resource_group.germany,
         module.peered-vnet-germany

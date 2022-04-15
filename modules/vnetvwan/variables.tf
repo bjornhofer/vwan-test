@@ -8,7 +8,12 @@ variable "vnet_scope" {
   description = "IP Scope of the VNET"
 }
 
-variable "subnet_prefix" {
+variable "subnet_pe_prefix" {
+  type        = string
+  description = "IP prefix of the subnet"
+}
+
+variable "subnet_vm_prefix" {
   type        = string
   description = "IP prefix of the subnet"
 }

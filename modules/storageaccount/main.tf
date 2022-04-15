@@ -2,9 +2,15 @@ data "azurerm_resource_group" "rg" {
   name = var.resource_group
 }
 
+# create random name
+resource "random_string" "storage" {
+  length           = 16
+  special          = false
+}
+
 # Storage account
 resource "azurerm_storage_account" "storage" {
-  name                     = var.name
+  name                     = random_string.storage.result
   resource_group_name      = data.azurerm_resource_group.rg.name
   location                 = data.azurerm_resource_group.rg.location
   account_kind              = "StorageV2"
@@ -13,7 +19,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                  = "demo"
+  name                  = "demo-${random_string.storage.result}"
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
 }
@@ -31,5 +37,4 @@ resource "azurerm_private_endpoint" "storage" {
     private_connection_resource_id = azurerm_storage_account.storage.id
     subresource_names              = ["blob"]
   }
-
 }
