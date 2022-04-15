@@ -19,9 +19,15 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                  = "demo-${lower(random_string.storage.result)}"
+  name                  = "blob"
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
+}
+
+resource "azurerm_storage_share" "fileshare" {
+  name                 = "share"
+  storage_account_name = azurerm_storage_account.storage.name
+  quota                = 50
 }
 
 # Private Endpoint
@@ -35,6 +41,6 @@ resource "azurerm_private_endpoint" "storage" {
     name                           = "psc-vwan-${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_storage_account.storage.id
-    subresource_names              = ["blob"]
+    subresource_names              = ["blob", "file"]
   }
 }
