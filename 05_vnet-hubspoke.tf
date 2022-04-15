@@ -11,3 +11,15 @@ module "hubspoke" {
     ]
 }
 
+# VM in the VNET
+module "spoke-vm-germany" {
+    source = "./modules/virtualmachine"
+    naming_convention = "spokegermany"
+    resource_group = azurerm_resource_group.germany.name
+    vmname = "vm00"
+    subnet_id = module.hubspoke.spoke_sn
+    depends_on = [
+        azurerm_resource_group.germany,
+        module.hubspoke
+    ]
+}

@@ -30,9 +30,9 @@ module "peered-vnet-germany" {
 # VM in the VNET
 module "peered-vm-germany" {
     source = "./modules/virtualmachine"
-    naming_convention = "peeredvmgermany00"
+    naming_convention = "peeredgermany"
     resource_group = azurerm_resource_group.germany.name
-    vmname = "vm01"
+    vmname = "vm00"
     subnet_id = module.peered-vnet-germany.subnet_vm_id
     depends_on = [
         azurerm_resource_group.germany,

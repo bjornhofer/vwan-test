@@ -5,3 +5,7 @@ output "hub" {
 output "spoke" {
   value = azurerm_virtual_network.spoke.name
 }
+
+output "spoke_sn" {
+  value = azurerm_subnet.spokesubnet.id
+}
