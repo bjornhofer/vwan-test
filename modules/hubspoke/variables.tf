@@ -23,3 +23,11 @@ variable "spoke_subnet_scope" {
   description = "IP Scope of the VNET"
 }
 
+variable "vwan_hub_id" {
+  type        = string
+  description = "ID of the VWAN-Hub"
+}
+variable "vwan_enabled" {
+  type        = bool
+  description = "migrate to azure VWAN"
+}

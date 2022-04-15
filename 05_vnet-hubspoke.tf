@@ -6,8 +6,12 @@ module "hubspoke" {
   hub_subnet_scope = "192.168.0.0/24"
   spoke_scope = "192.168.4.0/22"
   spoke_subnet_scope = "192.168.4.0/24"
+  vwan_hub_id = module.vwan-hub-germany.vwan_hub_id
+  vwan_enabled = true
   depends_on = [
-    azurerm_resource_group.hubspoke
+    azurerm_resource_group.hubspoke,
+    module.peered-vnet-germany,
+    module.vwan-hub-germany
     ]
 }
 
