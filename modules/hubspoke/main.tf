@@ -31,7 +31,6 @@ resource "azurerm_subnet" "spokesubnet" {
 }
 
 resource "azurerm_virtual_network_peering" "hub" {
-  count                     = var.vwan_enabled ? 0 : 1
   name                      = "hub2spoke"
   resource_group_name       = data.azurerm_resource_group.rg.name
   virtual_network_name      = azurerm_virtual_network.hub.name
@@ -39,7 +38,6 @@ resource "azurerm_virtual_network_peering" "hub" {
 }
 
 resource "azurerm_virtual_network_peering" "spoke" {
-  count                     = var.vwan_enabled ? 0 : 1
   name                      = "spoke2hub"
   resource_group_name       = data.azurerm_resource_group.rg.name
   virtual_network_name      = azurerm_virtual_network.spoke.name
@@ -47,7 +45,6 @@ resource "azurerm_virtual_network_peering" "spoke" {
 }
 
 resource "azurerm_virtual_hub_connection" "vnet2hub" {
-  count                     = var.vwan_enabled ? 1 : 0
   name                      = "vwan"
   virtual_hub_id            = var.vwan_hub_id
   remote_virtual_network_id = azurerm_virtual_network.spoke.id
