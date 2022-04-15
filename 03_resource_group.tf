@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "germany" {
   location = "Germany West Central"
 }
 
-resource "azurerm_resource_group" "germanys2s" {
-  name     = "rg-vwan-s2s-germany"
+resource "azurerm_resource_group" "hubspoke" {
+  name     = "rg-vwan-hubspoke-germany"
   location = "Germany West Central"
 }
