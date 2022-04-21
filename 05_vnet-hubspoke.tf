@@ -14,7 +14,7 @@ module "hubspoke" {
     module.vwan-hub-germany
     ]
 }
-
+/*
 # VM in the VNET
 module "spoke-vm-germany" {
     source = "./modules/virtualmachine"
@@ -27,3 +27,4 @@ module "spoke-vm-germany" {
         module.hubspoke
     ]
 }
+*/

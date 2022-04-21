@@ -27,6 +27,7 @@ module "peered-vnet-germany" {
     ]
 }
 
+/*
 # VM in the VNET
 module "peered-vm-germany" {
     source = "./modules/virtualmachine"
@@ -50,3 +51,4 @@ module "storage-acount-germany" {
         module.peered-vnet-germany
     ]
 }
+*/
