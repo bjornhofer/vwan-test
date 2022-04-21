@@ -27,7 +27,7 @@ variable "vwan_hub_id" {
   type        = string
   description = "ID of the VWAN-Hub"
 }
-variable "vwan_enabled" {
+variable "vwanhub_peering" {
   type        = bool
   description = "migrate to azure VWAN"
 }
