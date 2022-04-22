@@ -14,7 +14,7 @@ resource "azurerm_firewall" "test" {
   name                = "vwan-hub-fw-${lower(replace(var.vwan_hub_region, " ", ""))}"
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = var.vwan_hub_region
-  threat_intel_mode   = ""
+  //threat_intel_mode   = ""
   sku_tier            = "Premium"
   sku_name            = "AZFW_Hub"
   virtual_hub {
