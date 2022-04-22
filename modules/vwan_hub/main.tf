@@ -17,4 +17,7 @@ resource "azurerm_firewall" "test" {
   threat_intel_mode   = ""
   sku_tier            = "Premium"
   sku_name            = "AZFW_Hub"
+  virtual_hub {
+    virtual_hub_id = azurerm_virtual_hub.vwan_hub.id
+  }
 }
