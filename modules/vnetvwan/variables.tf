@@ -28,3 +28,8 @@ variable "enforce_private_link_endpoint_network_policies" {
   default     = false
   description = "enable or disable private endpoints"
 }
+
+variable "loganalytics_workspace_id" {
+  type = string
+  description = "ID of LogAnalytics Workspace"
+}

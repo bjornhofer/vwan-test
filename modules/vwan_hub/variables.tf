@@ -16,4 +16,9 @@ variable "vwan_hub_region" {
 variable "vwan_hub_ip" {
   type = string
   description = "IP-scope of the Virtual WAN Hub"
-}    
+}
+
+variable "loganalytics_workspace_id" {
+  type = string
+  description = "ID of LogAnalytics Workspace"
+}
