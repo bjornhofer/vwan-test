@@ -34,7 +34,7 @@ resource "azurerm_virtual_hub_connection" "vnet2hub" {
 resource "azurerm_monitor_diagnostic_setting" "default" {
   name               = "default"
   target_resource_id = azurerm_virtual_network.vnetvwan.id
-  log_analytics_workspace_id = var.loganalytics_workspace_idd
+  log_analytics_workspace_id = var.loganalytics_workspace_id
 
   log {
     category = "allLogs"
