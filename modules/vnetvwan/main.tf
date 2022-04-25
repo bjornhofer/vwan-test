@@ -29,7 +29,7 @@ resource "azurerm_virtual_hub_connection" "vnet2hub" {
   name                      = "vwan-vnet-peering-${lower(replace(data.azurerm_resource_group.rg.location, " ", ""))}"
   virtual_hub_id            = var.vwan_hub_id
   remote_virtual_network_id = azurerm_virtual_network.vnetvwan.id
-  internet_security_enabled = true
+  //internet_security_enabled = true
 }
 
 resource "azurerm_monitor_diagnostic_setting" "default" {
