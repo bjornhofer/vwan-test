@@ -22,6 +22,7 @@ resource "azurerm_firewall" "test" {
   }
 }
 
+/*
 resource "azurerm_monitor_diagnostic_setting" "default" {
   name               = "default"
   target_resource_id = azurerm_firewall.test.id
@@ -57,3 +58,4 @@ resource "azurerm_monitor_diagnostic_setting" "default" {
     }
   }
 }
+*/
