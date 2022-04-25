@@ -37,7 +37,7 @@ resource "azurerm_monitor_diagnostic_setting" "default" {
   log_analytics_workspace_id = var.loganalytics_workspace_id
 
   log {
-    category = "allLogs"
+    category = "VMProtectionAlerts"
     enabled  = true
     retention_policy {
       enabled = false
