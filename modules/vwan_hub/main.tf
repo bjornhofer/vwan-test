@@ -8,6 +8,7 @@ resource "azurerm_virtual_hub" "vwan_hub" {
   name                = "vwan-hub-${lower(replace(var.vwan_hub_region, " ", ""))}"
   resource_group_name = data.azurerm_resource_group.rg.name
   virtual_wan_id      = var.vwan_id
+  internet_security_enabled = true
 }
 
 resource "azurerm_firewall" "test" {
